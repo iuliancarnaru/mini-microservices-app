@@ -5,9 +5,9 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 4001;
 const app = express();
+app.use(cors());
 
 app.use(bodyParser.json());
-app.use(cors());
 
 const commentsByPostId = {};
 
