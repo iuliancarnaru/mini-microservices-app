@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moderation-deployment
+spec:
+  selector:
+    matchLabels:
+      app: moderation
+  template:
+    metadata:
+      labels:
+        app: moderation
+    spec:
+      containers:
+        - name: moderation
+          image: iuliancarnaru/moderation
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moderation-clusterip-service
+spec:
+  selector:
+    app: moderation
+  ports:
+    - port: 4003
+      targetPort: 4003

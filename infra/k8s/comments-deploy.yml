@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-deployment
+spec:
+  selector:
+    matchLabels:
+      app: comments
+  template:
+    metadata:
+      labels:
+        app: comments
+    spec:
+      containers:
+        - name: comments
+          image: iuliancarnaru/comments
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-clusterip-service
+spec:
+  selector:
+    app: comments
+  ports:
+    - port: 4001
+      targetPort: 4001
